@@ -5,8 +5,9 @@
     if (technique == correctTechnique) {
       result = "Bravo! Risposta esatta";
       score++;
+      maxScore = JSON.stringify(score);
     } else {
-      result = "Hai sbagliato:( Riprova";
+      result = `No, era ${correctTechnique}`;
     }
   }
   function shuffle<T>(array: T[]): T[] {
@@ -42,6 +43,9 @@
   let techniquesNames: string[] = $state([]);
   let result = $state("");
   let score = $state(0);
+  let maxScore = $state(localStorage.getItem("karateTriviaMaxScore"));
+
+  $effect(() => localStorage.setItem("karateTriviaMaxScore", maxScore!));
 
   function setup() {
     chosenWaza = techniques[Math.floor(Math.random() * techniques.length)];
@@ -51,7 +55,7 @@
     while (wrongTech1 == chosenWaza) {
       wrongTech1 = techniques[Math.floor(Math.random() * techniques.length)];
     }
-    while (wrongTech2 == chosenWaza) {
+    while (wrongTech2 == chosenWaza || wrongTech1 == wrongTech2) {
       wrongTech2 = techniques[Math.floor(Math.random() * techniques.length)];
     }
     techniquesNames = [wrongTech1, wrongTech2, chosenWaza];
@@ -82,7 +86,9 @@
 
   {#each techniquesNames as t, index}
     <div>
-      <button class="btn" onclick={() => handle(index, t)}>{t}</button>
+      <button class="btn btn-primary" onclick={() => handle(index, t)}
+        >{t}</button
+      >
 
       {#if openModalId === index}
         <dialog open class="modal">
@@ -102,4 +108,5 @@
   {/each}
 
   <h2>Punteggio: {score}</h2>
+  <h2>High score : {maxScore}</h2>
 </div>
