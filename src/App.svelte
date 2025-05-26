@@ -80,7 +80,11 @@
   <h1 class="text-3xl">Indovina la tecnica di karate!</h1>
   <div class="card bg-base-100 w-96 shadow-sm">
     <figure>
-      <img src={`./dist/assets/${chosenWaza}.png`} alt="Technique" />
+      <!-- <img src={`./dist/assets/${chosenWaza}.png`} alt="Technique" /> -->
+      <img
+        src={(imageModules[`./assets/${chosenWaza}.png`] as any).default}
+        alt="Technique"
+      />
     </figure>
     <div class="card-body">
       <h2 class="card-title">Che tecnica è?</h2>
