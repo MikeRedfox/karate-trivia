@@ -80,7 +80,7 @@
   <h1 class="text-3xl">Indovina la tecnica di karate!</h1>
   <div class="card bg-base-100 w-96 shadow-sm">
     <figure>
-      <img src={`./src/assets/${chosenWaza}.png`} alt="Shoes" />
+      <img src={`./dist/assets/${chosenWaza}.png`} alt="Technique" />
     </figure>
     <div class="card-body">
       <h2 class="card-title">Che tecnica è?</h2>
