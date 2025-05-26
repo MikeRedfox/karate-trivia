@@ -1,11 +1,14 @@
 <script lang="ts">
+  import Footer from "./lib/Footer.svelte";
   const imageModules = import.meta.glob("./assets/*.png", { eager: true });
 
   function isTechniqueCorrect(technique: string, correctTechnique: string) {
     if (technique == correctTechnique) {
       result = "Bravo! Risposta esatta";
       score++;
-      maxScore = JSON.stringify(score);
+      if (score > Number(maxScore)) {
+        maxScore = JSON.stringify(score);
+      }
     } else {
       result = `No, era ${correctTechnique}`;
     }
@@ -109,4 +112,6 @@
 
   <h2>Punteggio: {score}</h2>
   <h2>High score : {maxScore}</h2>
+
+  <Footer />
 </div>
